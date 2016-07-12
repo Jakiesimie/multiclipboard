@@ -21,7 +21,8 @@ def mcb_help():
 	print '{:>4}mcb [option] [key name]'.format('')
 	print '\nOptions:\n'
 	print '{:>4}help - blablabla\n'.format('')
-	print '{:>4}save [name] - Saves current clipboard under choosen key-name...\n'.format('')
+	print '{:>4}save - saves current clipboard under auto-generated key-name...\n'.format('')
+	print '{:>4}save [name] - saves current clipboard under choosen key-name...\n'.format('')
 	print '{:>4}[name] - load saved clipboard\n'.format('')
 	print '{:>4}list - lists every saved clipboard in mcb.dat file\n'.format('')
 	print '{:>4}delete - remove selected key-name from mcb.dat...\n'.format('')
@@ -30,10 +31,13 @@ def mcb_help():
 # Lists every saved clipboard in mcb.dat file
 def list_mcb(file):
 	print '\nSaved clipboards:\n{0}\n'.format('-' * 17)
+
 	for i, k in enumerate(file.keys()):
 		print '{:>4}. {}'.format(i+1, k)
+
 	if not file.keys():
 		print '{:>4}- none -'.format('')
+
 	print
 
 # Saves current clipboard under choosen key-name.
@@ -62,12 +66,12 @@ def save_mcb(file):
 def load_mcb_item(file, item):
 	try:
 		pyperclip.copy(file[item])
-		print '* Clipboard "{}" loaded successfully!\n'.format(item)
+		print '* Clipboard "{}" was loaded successfully!\n'.format(item)
 
 		# Just for test!!
 		print file[item]
 	except KeyError:
-		print '* Clipboard "{}" not found...\n'.format(item)
+		print '* Clipboard "{}" was not found...\n'.format(item)
 
 # Remove selected key-name from mcb.dat
 def delete_mcb_item(file, item):
@@ -129,9 +133,3 @@ if __name__ == '__main__':
 # TODO:
 # 1. saving: if chosen key exists in the dictionary - issue a warning and prompt for new name for the clipboard,
 # 4. refactor this sript to OO (argparse, optparse)
-
-
-
-
-
-
